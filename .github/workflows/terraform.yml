@@ -10,9 +10,9 @@ jobs:
 
     env:
       ARM_CLIENT_ID: "cddaa081-05d9-479d-8db1-9a61ca114652"
-      ARM_CLIENT_SECRET: "5a0855b9-426d-429e-83a9-ea7c4796e9a4"
-      ARM_SUBSCRIPTION_ID: "b4379ba6-6d53-47fe-b814-910057a92b2b"
-      ARM_TENANT_ID: "olZ7Q~ShO5OwScek3lD2jdnySLUHZo5OhyjVX"
+      ARM_CLIENT_SECRET: "olZ7Q~ShO5OwScek3lD2jdnySLUHZo5OhyjVX"
+      ARM_SUBSCRIPTION_ID: "5a0855b9-426d-429e-83a9-ea7c4796e9a4"
+      ARM_TENANT_ID: "b4379ba6-6d53-47fe-b814-910057a92b2b"
 
     steps:
       - uses: actions/checkout@v2
