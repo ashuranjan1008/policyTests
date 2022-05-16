@@ -11,7 +11,7 @@ locals {
 
 data "azurerm_subscription" "current" {}
 
-resource "azurerm_policy_definition" "policy" {
+resource "azurerm_resource_policy_definition" "policy" {
   for_each = local.policy_json
    
   name = join("", [var.name_space, "_", each.value.name])
@@ -33,16 +33,17 @@ resource "azurerm_policy_set_definition" "policy_set" {
   name         = join("", [var.name_space, "_PolicySet"])
   display_name = join("", [var.name_space, ": Policy Set"])
   policy_type  = "Custom"
+
  
   lifecycle {
     ignore_changes = [
       metadata
     ]
   }
-  policy_definitions = jsonencode([ for p in local.policy_files_without_extension: {"policyDefinitionId": azurerm_policy_definition.policy[p].id }])
+ policy_definition_reference = jsonencode([ for p in local.policy_files_without_extension: {"policyDefinitionId": azurerm_policy_definition.policy[p].id }])
 }
 
-resource "azurerm_policy_assignment" "policy_assignment" {
+resource "azurerm_resource_policy_assignment" "policy_assignment" {
   name    = join("", [var.name_space, "_PA"])
   scope   = data.azurerm_subscription.current.id
 
