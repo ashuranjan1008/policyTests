@@ -34,7 +34,7 @@ resource "azurerm_policy_set_definition" "policy_set" {
   display_name = join("", [var.name_space, ": Policy Set"])
   policy_type  = "Custom"
 policy_definition_reference {
-   policy_definition = jsonencode([ for p in local.policy_files_without_extension: {"policyDefinitionId": azurerm_policy_definition.policy[p].id }])
+   policy_definition_id = jsonencode([ for p in local.policy_files_without_extension: {"policyDefinitionId": azurerm_policy_definition.policy[p].id }])
 }
  
   lifecycle {
